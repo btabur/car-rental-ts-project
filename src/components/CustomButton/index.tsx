@@ -1,16 +1,11 @@
+import { buttonPropsType } from "../../types"
 
-type buttonPropsType = {
-  disabled?:boolean,
-  designs:string,
-  btnType?:"submit"|"button"|"reset",
-  title:string
 
-}
 
-const CustomButton = ({disabled, designs,btnType,title}:buttonPropsType) => {
+const CustomButton = ({disabled, designs,btnType,title,handleClick}:buttonPropsType) => {
   return (
    
-    <button disabled={disabled} type={btnType} className={`${designs} custom-btn bg-primary-blue rounded-full hover:bg-blue-500 text-white`}>
+    <button onClick={handleClick} disabled={disabled} type={btnType} className={`${designs} custom-btn bg-primary-blue rounded-full hover:bg-blue-500 text-white`}>
         {title}
     </button>
   )
