@@ -5,16 +5,21 @@ import SearchBar from '../components/SearchBar'
 import { fetchCars } from '../utils/fetchCars'
 import { carType } from '../types'
 import Card from '../components/Card'
+import ShowMore from '../components/ShowMore'
+import { useSearchParams } from 'react-router-dom'
 
 const MainPage = () => {
+  const [params]=useSearchParams();
   //useState bizim state de tutacağımız verinin tipini ister. 
   const [cars,setCars] = useState<carType[] | null>(null)
   const [isError,setIsError] = useState<boolean>(false)
   useEffect(()=> {
-    fetchCars()
+    //url deki bütün parametreleri al ve obje oluştur
+    const paramsObject= Object.fromEntries(params.entries())
+    fetchCars(paramsObject)
     .then(res => setCars(res))
     .catch(()=> setIsError(true))
-  },[])
+  },[params])
   return (
     <div>
       <Hero/>
@@ -57,6 +62,7 @@ const MainPage = () => {
              <div className='home__cars-wrapper'>
              {cars.map((card,i)=> <Card key={i} car={card}/>)}
              </div>
+              <ShowMore/>
             </section>
           )}
       </div>

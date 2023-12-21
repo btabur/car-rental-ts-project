@@ -1,12 +1,15 @@
+import { useState } from "react"
 import { carType } from "../../types"
 import CustomButton from "../CustomButton"
 import DetailModel from "./DetailModel"
+import { generateImage } from "../../utils/generateImage"
 
 
 interface ICardProps {
     car:carType
 }
 const Card = ({car}:ICardProps) => {
+    const [isModalShow,setIsModelShow] =useState<boolean>(false)
   return (
     <div className="car-card group">
         {/* araba ismi */}
@@ -22,7 +25,7 @@ const Card = ({car}:ICardProps) => {
 
         {/* Resim alanı */}
         <div className="relative w-full h-40 my-3 ">
-            <img src="hero.png" className="w-full h-full object-contain" />
+            <img src={generateImage(car)} className="w-full h-full object-contain" />
         </div>
         {/* Alt kısım */}
         <div  className="flex w-full mt-2 relative" >
@@ -43,11 +46,17 @@ const Card = ({car}:ICardProps) => {
             </div>
              {/* buton */}
             <div className="group-hover:flex w-full hidden absolute bottom-0 ">
-                <CustomButton rIcon="/right-arrow.svg" title="Daha Fazla" designs="w-full py-[16px]"/>
+                <CustomButton
+                handleClick={()=> setIsModelShow(true)}
+                 rIcon="/right-arrow.svg" title="Daha Fazla" designs="w-full py-[16px]"/>
             </div>
         </div>
         {/* Modal */}
-        <DetailModel/>
+        <DetailModel
+         car={car}
+         isOpen={isModalShow}
+         close={()=>setIsModelShow(false)} 
+         />
     </div>
   )
 }

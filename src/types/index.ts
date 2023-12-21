@@ -32,3 +32,11 @@ export type buttonPropsType = {
     "transmission": "a" | "b",
     "year": number
 }
+
+export type filterType = {
+  make?:string;
+  model?:string; 
+  limit?:string;
+  fuel?:string;
+  year?:string
+}
