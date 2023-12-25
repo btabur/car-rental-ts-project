@@ -8,7 +8,6 @@ type ModelPropsType = {
 }
 
 const DetailModel = ({car,isOpen,close}:ModelPropsType) => {
-  console.log(car)
   return (
     //modal açıksa ekrana bas
     isOpen && (

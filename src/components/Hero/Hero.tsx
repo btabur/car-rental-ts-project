@@ -1,5 +1,5 @@
 import CustomButton from "../CustomButton"
-
+import {motion} from 'framer-motion'
 
 const Hero = () => {
     const flyTo= ():void=> {
@@ -17,7 +17,19 @@ const Hero = () => {
             <CustomButton handleClick={flyTo} title="Arabaları Keşfet" designs="mt-10 "/>
         </div>
         <div className="flex justify-center">
-            <img className="object-contain" src="./hero.png" alt="" />
+            <motion.img 
+            initial={{
+                translateX:200,
+                scale:0.7
+            }}
+            animate={{
+                translateX:0,
+                scale:1
+            }}
+            transition={{
+                duration:1
+            }}
+            className="object-contain" src="./hero.png" alt="" />
         </div>
     </div>
   )

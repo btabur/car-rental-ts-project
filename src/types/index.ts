@@ -38,5 +38,6 @@ export type filterType = {
   model?:string; 
   limit?:string;
   fuel?:string;
-  year?:string
+  year?:string;
+  fuel_type?:string
 }

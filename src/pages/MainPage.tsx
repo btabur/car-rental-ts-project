@@ -18,7 +18,8 @@ const MainPage = () => {
     const paramsObject= Object.fromEntries(params.entries())
     fetchCars(paramsObject)
     .then(res => setCars(res))
-    .catch(()=> setIsError(true))
+    .catch((err)=> {setIsError(true)
+      console.log(err)})
   },[params])
   return (
     <div>
