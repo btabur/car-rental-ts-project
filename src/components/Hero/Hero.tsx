@@ -17,6 +17,7 @@ const Hero = () => {
             <CustomButton handleClick={flyTo} title="Arabaları Keşfet" designs="mt-10 "/>
         </div>
         <div className="flex justify-center">
+            {/* Resim yüklendiği anda girecek animasyon */}
             <motion.img 
             initial={{
                 translateX:200,
