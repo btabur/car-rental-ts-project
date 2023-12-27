@@ -1,6 +1,6 @@
 import { carType } from "../../types"
 import { generateImage } from "../../utils/generateImage";
-
+import {AnimatePresence, motion} from 'framer-motion'
 type ModelPropsType = {
     car:carType;
     isOpen:boolean;
@@ -9,10 +9,28 @@ type ModelPropsType = {
 
 const DetailModel = ({car,isOpen,close}:ModelPropsType) => {
   return (
-    //modal açıksa ekrana bas
-    isOpen && (
-            <div className="fixed inset-0 bg-black bg-opacity-25  z-20 grid place-items-center p-4">
-            <div className="p-6 relative bg-white w-full max-w-lg max-h-[90vh] rounded-2xl  flex flex-col gap-5 shadow-xl overflow-auto ">
+    <AnimatePresence>
+    {isOpen && (
+            <div 
+           
+            className="fixed inset-0 bg-black bg-opacity-25  z-20 grid place-items-center p-4">
+            <motion.div
+             initial= {{
+                scale:0.3,
+                opacity:0,
+            }}
+            whileInView={{
+                scale:1,
+                opacity:1,
+            }}
+            exit={{
+                scale:0,
+                opacity:0
+            }}
+            transition={{
+                duration:0.4
+            }}
+            className="p-6 relative bg-white w-full max-w-lg max-h-[90vh] rounded-2xl  flex flex-col gap-5 shadow-xl overflow-auto ">
                 {/* kapatma butonu */}
                 <button onClick={close} className="cursor-pointer p-1 absolute end-1 top-1 z-10 bg-white rounded-full">
                     <img src="/close.svg" alt="" />
@@ -55,9 +73,13 @@ const DetailModel = ({car,isOpen,close}:ModelPropsType) => {
                         ))
                     }
                
-            </div>    
+            </motion.div>    
         </div>
-        ))
+        
+        )}
+         </AnimatePresence>
+        )
+      
     }
 
 export default DetailModel
